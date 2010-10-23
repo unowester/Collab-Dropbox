@@ -1,2 +1,7 @@
-\nbproject
+/nbproject
 .DS_Store
+/collabdropbox.jar
+/build/*
+/.classpath
+/.project
+/bin/*

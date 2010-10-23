@@ -40,9 +40,14 @@
     <java jar="collabdropbox.jar" fork="true" failonerror="true" classpathref="class.path" />
   </target>
 
+  <target name="base-clean">
+    <delete dir="build"/>
+  </target>
+
   <target name="compile" depends="init, base-compile" />
   <target name="jar" depends="init, base-compile, base-jar" />
   <target name="run" depends="init, base-compile, base-jar, base-run" />
+  <target name="clean" depends="init, base-clean" />
 
 </project>
 
