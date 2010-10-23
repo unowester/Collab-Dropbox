@@ -39,7 +39,9 @@
   </target>
 
   <target name="base-run">
-    <java jar="collabdropbox.jar" fork="true" failonerror="true" classpathref="class.path" />
+    <java jar="collabdropbox.jar" fork="true" failonerror="true" classpathref="class.path">
+      <jvmarg value="-Djava.library.path=${jnotify.path}" />
+    </java>
   </target>
 
   <target name="base-clean">
