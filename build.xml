@@ -29,9 +29,11 @@
   </target>
 
   <target name="base-jar">
+   <pathconvert pathsep=":" property="tmp.class.path" refid="class.path"/>
     <jar destfile="collabdropbox.jar" basedir="build">
       <manifest>
         <attribute name="Main-Class" value="se.webbninja.collabdropbox.Main"/>
+        <attribute name="Class-Path" value="${tmp.class.path}"/>
       </manifest>
     </jar>
   </target>
