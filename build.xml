@@ -10,7 +10,7 @@
     <property environment="env"/>
 
     <path id="class.path">
-      <fileset dir="lib/" includes="*.jar" />
+      <fileset dir="lib/java/" includes="*.jar" />
     </path>
 
     <mkdir dir="build" />
@@ -39,7 +39,9 @@
   </target>
 
   <target name="base-run">
-    <java jar="collabdropbox.jar" fork="true" failonerror="true" classpathref="class.path" />
+    <java jar="collabdropbox.jar" fork="true" failonerror="true" classpathref="class.path">
+      <jvmarg value="-Djava.library.path=${jnotify.path}" />
+    </java>
   </target>
 
   <target name="base-clean">
