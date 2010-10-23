@@ -29,7 +29,7 @@
   </target>
 
   <target name="base-jar">
-   <pathconvert pathsep=":" property="tmp.class.path" refid="class.path"/>
+   <pathconvert pathsep=" " property="tmp.class.path" refid="class.path"/>
     <jar destfile="collabdropbox.jar" basedir="build">
       <manifest>
         <attribute name="Main-Class" value="se.webbninja.collabdropbox.Main"/>
@@ -44,6 +44,7 @@
 
   <target name="base-clean">
     <delete dir="build"/>
+    <delete file="collabdropbox.jar"/>
   </target>
 
   <target name="compile" depends="init, base-compile" />
