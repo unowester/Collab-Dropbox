@@ -1,0 +1,48 @@
+<!--
+  Collab dropbox collab file.
+-->
+<project name="Collab-Dropbox" default="jar" basedir=".">
+
+  <target name="init">
+    <tstamp/>
+
+    <property file="conf/settings.properties" />
+    <property environment="env"/>
+
+    <path id="class.path">
+      <fileset dir="lib/" includes="*.jar" />
+    </path>
+
+    <mkdir dir="build" />
+
+  </target>
+
+  <target name="base-compile">
+    <javac classpathref="class.path"
+        destdir="build"
+        debug="on"
+        listfiles="yes"
+        encoding="utf8"
+        includeAntRuntime="yes">
+      <src path="src" />
+    </javac>
+  </target>
+
+  <target name="base-jar">
+    <jar destfile="collabdropbox.jar" basedir="build">
+      <manifest>
+        <attribute name="Main-Class" value="se.webbninja.collabdropbox.Main"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="base-run">
+    <java jar="collabdropbox.jar" fork="true" failonerror="true" classpathref="class.path" />
+  </target>
+
+  <target name="compile" depends="init, base-compile" />
+  <target name="jar" depends="init, base-compile, base-jar" />
+  <target name="run" depends="init, base-compile, base-jar, base-run" />
+
+</project>
+
