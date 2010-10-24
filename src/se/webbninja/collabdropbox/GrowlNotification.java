@@ -15,7 +15,29 @@ public class GrowlNotification implements MessageImplementation {
     public GrowlNotification(){
 
     }
-/*
+ /**
+ *  isRunning() is a mesthod to check if growl is running and running ok on the your mac
+ */
+    public boolean isRunning(){
+
+        String FUN_NOTIFICATION="Fun notification", BORING_NOTIFICATION="Boring notification";
+
+        GrowlWrapper gw=new GrowlWrapper("myApp","dropbox",
+        new String[] {FUN_NOTIFICATION,BORING_NOTIFICATION},
+        new String[] {FUN_NOTIFICATION});
+
+        boolean gwOk= false;
+        if (gw.getState() == GrowlWrapper.GROWL_OK)
+        {
+            gwOk= true;
+        }
+        else{
+            gwOk= false;
+        }
+
+        return gwOk;
+    }
+/**
  *  isUsingFile() is a method to notify the dropbox user is staring to use a file
  *  String filename, the name of the file being used
  *  String username, the name of the user hwo is using the file
@@ -30,14 +52,14 @@ public class GrowlNotification implements MessageImplementation {
 
         String myMessage = username  + " is using " + filename;
 
-       gw.notify(FUN_NOTIFICATION,"DropBox notifikation",myMessage);
+       gw.notify(FUN_NOTIFICATION,"Dropbox notifikation",myMessage);
 
        //gw.notify(BORING_NOTIFICATION,"Boring stuff",myMessage);
 
 
         throw new UnsupportedOperationException("Not supported yet.");
     }
-/*
+/**
  *  stoppedUsingFile() is a method to notify the dropbox users when someone is stoppes using a file 
  *  String filename, the name of the file being used 
  *  String username, the name of the user hwo is using the file 
