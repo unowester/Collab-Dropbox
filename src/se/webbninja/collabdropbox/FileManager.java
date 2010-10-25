@@ -29,6 +29,44 @@ public class FileManager {
 
     }
 
+    /**
+     *  Maby we should check every new hidden file created
+     *  so it is a Collab-DropBox hidden file.
+     *
+     * @param hiddenFile
+     * @return
+     */
+    public Boolean checkMainFileExist( String hiddenFile ){
+
+        Boolean isCDBfile = false;
+
+        // Check that the first char is a . so we know its hidden
+        if (!hiddenFile.substring(0,1).equals(".")){
+            System.out.println( "file not hidden." );
+            return false;
+        }
+
+        // Remove the first charachter
+        String myFile = hiddenFile.substring(1);
+
+        // Return if it exists or not
+        Boolean existanze = this.checkFileExists( myFile );
+        if (existanze == true) {
+            isCDBfile = true;
+        }
+
+        // Just tell ut what we have learned
+        System.out.println("myFile: " + myFile + " - " + existanze);
+
+        // I ques we are going to do some more checks when we have
+        // decided what to name our files.
+
+
+        // Return it
+        return isCDBfile;
+        
+    }
+
     public void Exists( String myFile ){
 
         if (this.checkFileExists( myFile )){
