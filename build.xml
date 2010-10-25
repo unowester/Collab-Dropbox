@@ -29,6 +29,9 @@
   </target>
 
   <target name="base-jar">
+   <copy todir="build">
+      <fileset dir="src" excludes="**/*.java" />
+   </copy>
    <pathconvert pathsep=" " property="tmp.class.path" refid="class.path"/>
     <jar destfile="collabdropbox.jar" basedir="build">
       <manifest>
