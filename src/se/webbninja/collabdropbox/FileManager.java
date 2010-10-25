@@ -30,40 +30,57 @@ public class FileManager {
     }
 
     /**
-     *  Maby we should check every new hidden file created
+     *  Maybe we should check every new hidden file created
      *  so it is a Collab-DropBox hidden file.
+     *
+     *  Maybe we should return false directly and stop the checking
      *
      * @param hiddenFile
      * @return
      */
     public Boolean checkMainFileExist( String hiddenFile ){
 
-        Boolean isCDBfile = false;
-
+        Boolean isCDBfile = true;
+        
         // Check that the first char is a . so we know its hidden
         if (!hiddenFile.substring(0,1).equals(".")){
-            System.out.println( "file not hidden." );
-            return false;
+            System.out.println( "file not *nix hidden." );
+            isCDBfile = false;
+        }
+
+        // Check that this file ends with cdb
+        Boolean confirmIsCDB = this.confirmCDBFile( hiddenFile );
+        if (!confirmIsCDB){
+            System.out.println("This is not a cbd file.");
+            isCDBfile = false;
         }
 
         // Remove the first charachter
-        String myFile = hiddenFile.substring(1);
+        String parentFile = hiddenFile.substring(1);
 
         // Return if it exists or not
-        Boolean existanze = this.checkFileExists( myFile );
-        if (existanze == true) {
-            isCDBfile = true;
+        Boolean existanze = this.checkFileExists( parentFile );
+        if (existanze == false) {
+            // Delete this cdb file?
+            System.out.println( "There does not exist any parent file for this cdb file." );
+            isCDBfile = false;
+        }
+        
+        // Will return true if noting whent false
+        return isCDBfile;
+
+    }
+
+    private Boolean confirmCDBFile( String cdbFile ){
+
+        int startIndex = cdbFile.length()-3;
+        int endIndex = cdbFile.length();
+
+        if (cdbFile.substring(startIndex, endIndex).equals("cdb")) {
+            return true;
         }
 
-        // Just tell ut what we have learned
-        System.out.println("myFile: " + myFile + " - " + existanze);
-
-        // I ques we are going to do some more checks when we have
-        // decided what to name our files.
-
-
-        // Return it
-        return isCDBfile;
+        return false;
         
     }
 
@@ -77,7 +94,7 @@ public class FileManager {
         
     }
 
-    private Boolean checkFileExists(String Path){
+    private Boolean checkFileExists( String Path ){
 
         Path = baseP + "." + Path;
 
