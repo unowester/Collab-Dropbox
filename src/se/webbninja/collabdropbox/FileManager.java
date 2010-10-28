@@ -57,6 +57,7 @@ public class FileManager {
 
         // Remove the first charachter
         String parentFile = hiddenFile.substring(1);
+        parentFile = parentFile.substring(0, (parentFile.length() -5));
 
         // Return if it exists or not
         Boolean existanze = this.checkFileExists( parentFile );
