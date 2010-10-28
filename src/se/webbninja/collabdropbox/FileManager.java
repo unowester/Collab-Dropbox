@@ -73,10 +73,10 @@ public class FileManager {
 
     private Boolean confirmCDBFile( String cdbFile ){
 
-        int startIndex = cdbFile.length()-3;
+        int startIndex = cdbFile.length()-4;
         int endIndex = cdbFile.length();
 
-        if (cdbFile.substring(startIndex, endIndex).equals("cdb")) {
+        if (cdbFile.substring(startIndex, endIndex).equals("cdb~")) {
             return true;
         }
 
